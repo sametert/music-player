@@ -1,44 +1,43 @@
-#controls i {
-    font-size: 30px;
-    color: #000;
-    /* margin-right: 20px; */
-}
-
-#controls #controls-play i{
-    margin-right: 20px;
-}
-
-
 #controls i:hover {
     cursor: pointer;
 }
 
 .container {
-    width: 350px !important;
+    width: 400px !important;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
 
-.container img {
-    width: 100%;
-}
-
 #progress {
     margin-bottom: 20px;
 }
 
-#progress .times, #controls{
+#progress .times , .card-footer, #controls-volume{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#progress-bar {
-    width: 100%;
-    margin-bottom: 10px;
+
+#music-details .title{
+   margin: 0;
+   font-weight: 600 !important;
+
 }
+
+#music-details .singer {
+    text-transform: uppercase;
+    font-style: italic;
+    color: rgb(61, 60, 60);
+}
+
+li.oynatiliyor {
+    background-color: #000;
+    color: #fff;
+}
+
 
 
 
