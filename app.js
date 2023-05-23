@@ -10,11 +10,14 @@ const duration    = document.querySelector("#duration");
 const progressBar = document.querySelector("#progress-bar");
 const volume      = document.querySelector("#volume");
 const volumeBar   = document.querySelector("#volume-bar");
-
+const liked     = document.querySelector("#liked");
+const showLiked = document.querySelector("#liked-list");
 
 
 
 const player = new MusicPlayer(musicList);
+console.log(player)
+console.log(player.getMusic())
 
 
 window.addEventListener("load", () => {
@@ -51,7 +54,9 @@ next.addEventListener("click", () => {
     const music = player.getMusic();
     displayMusic(music);
     play.querySelector("i").setAttribute("class","fa-solid fa-play");
-    isPlaying();
+    isPlaying();  
+    controlEdelim();
+   
 });
 
 prev.addEventListener("click" , () => {
@@ -60,6 +65,8 @@ prev.addEventListener("click" , () => {
     displayMusic(music);
     play.querySelector("i").setAttribute("class","fa-solid fa-play");
     isPlaying();
+    controlEdelim();
+     
 });
 
 
@@ -120,7 +127,7 @@ volumeBar.addEventListener("input", e => {
 const list = document.querySelector("#music-list");
 
 const listShow = music => {
-    console.log(music);
+    // console.log(music);
     for(let i = 0; i< music.length ; i++) {
         let tag = `
                 <li onclick="selectedMusic(this)" li-index="${i}" class="list-group-item d-flex justify-content-between"style="font-size:14px;">
@@ -171,6 +178,85 @@ audio.addEventListener("ended", () => {
     next.click();
 });
 
+
+//liked ekleme
+
+// console.log(liked);
+// console.log(liked.children[0]);
+
+const showLike = (kullanici,song) => {
+        
+
+        // liked.classList.add("eklendi");
+
+        // console.log(liked.classList.contains("eklendi"));
+
+        if(!(liked.classList.contains("eklendi"))) {
+            liked.children[0].setAttribute("class","fa-solid fa-heart fa-beat-fade text-danger");
+            
+            const ekle = `
+            <li class="list-group-item d-flex justify-content-between align-items-center" li-index="${kullanici.index}">
+                <img src="img/${song.img}" class="img-fluid" width="50" style="height:50px;" alt="">
+                <span style="font-size: 12px;">${song.getName()}</span>
+                <i class="fa-solid fa-heart text-danger"></i>
+            </li>
+        `;
+
+         showLiked.insertAdjacentHTML("beforeend", ekle);
+         liked.classList.add("eklendi");
+         liked.classList.add(`${kullanici.index}`);
+        }else if(liked.classList.contains("eklendi")) {
+            console.log("ekleme yapamazsin");
+            liked.children[0].setAttribute("class","fa-regular fa-heart");
+            liked.classList.remove("eklendi");
+            liked.classList.remove(`${kullanici.index}`);
+            // if(liked.classList.contains(player.index)) {
+            //     showLiked.lastElementChild.remove();
+            // }
+            showLiked.lastElementChild.remove();
+        }
+
+        
+    }
+
+
+
+    const controlEdelim = () => {
+      
+        if(liked.classList.contains(player.index)){
+            liked.children[0].setAttribute("class","fa-solid fa-heart fa-beat-fade text-danger");
+            liked.classList.add("eklendi");
+        } else {
+            liked.classList.remove("eklendi");
+            liked.children[0].setAttribute("class","fa-regular fa-heart");
+        }
+    }
+
+
+ 
+    // liked.classList.add("eklendi");
+   
+
+
+liked.addEventListener("click", () => {
+    showLike(player,player.getMusic());
+    controlEdelim();
+});
+
+
+document.getElementById("repeat").addEventListener("click",() => {
+    if(!(document.getElementById("repeat").classList.contains("repeat"))) {
+        document.getElementById("repeat").style.color ="green";
+        document.getElementById("repeat").style.fontSize ="20px";
+        audio.loop = true;
+        document.getElementById("repeat").classList.add("repeat");
+    }else if(document.getElementById("repeat").classList.contains("repeat")) {
+        document.getElementById("repeat").style.color ="";
+        document.getElementById("repeat").style.fontSize ="";
+        audio.loop = false;
+        document.getElementById("repeat").classList.remove("repeat");
+    }
+})
 
 
 
