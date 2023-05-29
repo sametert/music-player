@@ -30,28 +30,25 @@
                 </div>
 
                 <div id="controls">
-                    <div class="text-start">
                         <button class="btn rounded-circle" id="repeat">
                             <i class="fa-solid fa-arrows-rotate"></i>
                         </button>
-                    </div>
-                    <div class="text-center">
-                        <button id="prev" class="btn btn-dark rounded-circle">
-                            <i class="fa-solid fa-backward-step"></i>
-                        </button>
-                        <button id="play" class="btn btn-dark rounded-circle">
-                            <i class="fa-solid fa-play"></i>
-                        </button>
-                        <button id="next" class="btn btn-dark rounded-circle">
-                            <i class="fa-solid fa-forward-step"></i>
-                        </button>      
-                    </div>
-
-                    <div class="text-end">
+                   
+                        <div class="d-inline-block">
+                            <button id="prev" class="btn btn-dark rounded-circle">
+                                <i class="fa-solid fa-backward-step"></i>
+                            </button>
+                            <button id="play" class="btn btn-dark rounded-circle">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <button id="next" class="btn btn-dark rounded-circle">
+                                <i class="fa-solid fa-forward-step"></i>
+                            </button> 
+                        </div>     
+                                 
                        <button  id="liked" class="btn rounded-circle">
                             <i class="fa-regular fa-heart"></i>
                         </button>
-                    </div>
                 </div>         
             </div>
 
@@ -61,10 +58,7 @@
                 </button>
                 <button class="btn btn-danger btn-sm" data-bs-target="#liked-list" data-bs-toggle="collapse">
                     <i class="fa-solid fa-heart"></i>
-                </button>
-               
-
-                
+                </button> 
                 <div id="controls-volume">
                     <i class="fa-solid fa-volume-high ses me-2" id="volume"></i>
                     <input type="range" name="" id="volume-bar" max="100" value="100" class="form-range">    
@@ -78,11 +72,6 @@
             <ul id="liked-list" class="collapse list-group">
               
             </ul>
-
-           
-
-           
-           
         </div>
     </div>
 

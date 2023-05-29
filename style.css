@@ -37,23 +37,12 @@ li.oynatiliyor {
     background-color: #000;
     color: #fff;
 }
-  /* #controls {
+
+#controls {
     display: flex;
     align-items: center;
-     justify-content: center; 
-}  */
-
-/* .text-center , .text-end {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-around;
-} */
-
-
-/* #controls {
-    display: grid;
-    grid-template-columns: auto auto;
-} */
+    justify-content: space-between; 
+} 
 
 
 
