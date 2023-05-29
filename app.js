@@ -55,8 +55,7 @@ next.addEventListener("click", () => {
     displayMusic(music);
     play.querySelector("i").setAttribute("class","fa-solid fa-play");
     isPlaying();  
-    controlEdelim();
-   
+    controlEdelim();  
 });
 
 prev.addEventListener("click" , () => {
@@ -65,8 +64,7 @@ prev.addEventListener("click" , () => {
     displayMusic(music);
     play.querySelector("i").setAttribute("class","fa-solid fa-play");
     isPlaying();
-    controlEdelim();
-     
+    controlEdelim();   
 });
 
 
@@ -127,7 +125,6 @@ volumeBar.addEventListener("input", e => {
 const list = document.querySelector("#music-list");
 
 const listShow = music => {
-    // console.log(music);
     for(let i = 0; i< music.length ; i++) {
         let tag = `
                 <li onclick="selectedMusic(this)" li-index="${i}" class="list-group-item d-flex justify-content-between"style="font-size:14px;">
@@ -165,11 +162,9 @@ const isPlaying = () => {
         if(li.classList.contains("oynatiliyor")) {
             li.classList.remove("oynatiliyor");
         }
-
         if(li.getAttribute("li-index") == player.index) {
             li.classList.add("oynatiliyor");
         }
-
     }
 }
 
@@ -179,23 +174,13 @@ audio.addEventListener("ended", () => {
 });
 
 
-//liked ekleme
-
-// console.log(liked);
-// console.log(liked.children[0]);
-
-const showLike = (kullanici,song) => {
-        
-
-        // liked.classList.add("eklendi");
-
-        // console.log(liked.classList.contains("eklendi"));
+const showLike = (kullanici,song,baba) => {
 
         if(!(liked.classList.contains("eklendi"))) {
             liked.children[0].setAttribute("class","fa-solid fa-heart fa-beat-fade text-danger");
             
             const ekle = `
-            <li class="list-group-item d-flex justify-content-between align-items-center" li-index="${kullanici.index}">
+            <li class="${kullanici.index} list-group-item d-flex justify-content-between align-items-center" li-index="${kullanici.index}">
                 <img src="img/${song.img}" class="img-fluid" width="50" style="height:50px;" alt="">
                 <span style="font-size: 12px;">${song.getName()}</span>
                 <i class="fa-solid fa-heart text-danger"></i>
@@ -210,19 +195,21 @@ const showLike = (kullanici,song) => {
             liked.children[0].setAttribute("class","fa-regular fa-heart");
             liked.classList.remove("eklendi");
             liked.classList.remove(`${kullanici.index}`);
-            // if(liked.classList.contains(player.index)) {
-            //     showLiked.lastElementChild.remove();
-            // }
-            showLiked.lastElementChild.remove();
-        }
 
-        
+            const toplamChild = showLiked.children;
+            for(let i = 0 ; i < toplamChild.length ; i++) {
+                if(showLiked.children[i].getAttribute("li-index").includes(player.index)) {
+                   showLiked.children[i].remove();
+                }       
+            }     
+        }      
     }
 
 
 
-    const controlEdelim = () => {
-      
+
+
+const controlEdelim = () => {
         if(liked.classList.contains(player.index)){
             liked.children[0].setAttribute("class","fa-solid fa-heart fa-beat-fade text-danger");
             liked.classList.add("eklendi");
@@ -233,17 +220,13 @@ const showLike = (kullanici,song) => {
     }
 
 
- 
-    // liked.classList.add("eklendi");
-   
-
-
 liked.addEventListener("click", () => {
     showLike(player,player.getMusic());
     controlEdelim();
 });
 
 
+//tekrar oynatma
 document.getElementById("repeat").addEventListener("click",() => {
     if(!(document.getElementById("repeat").classList.contains("repeat"))) {
         document.getElementById("repeat").style.color ="green";
