@@ -16,8 +16,6 @@ const showLiked = document.querySelector("#liked-list");
 
 
 const player = new MusicPlayer(musicList);
-console.log(player)
-console.log(player.getMusic())
 
 
 window.addEventListener("load", () => {
